@@ -25,9 +25,17 @@ namespace WhiteLagoon.Web.Controllers
         [HttpPost]
         public IActionResult Create(Villa villa)
         {
-            _db.Villas.Add(villa);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (villa.Name == villa.Description)
+            {
+                ModelState.AddModelError("","Name and description cannot be the same");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Villas.Add(villa);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }
