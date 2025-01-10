@@ -15,5 +15,10 @@ namespace WhiteLagoon.Web.Controllers
             var data = _db.Villas.ToList();
             return View(data);
         }
+
+        public IActionResult Create() 
+        {
+            return View();
+        }
     }
 }
