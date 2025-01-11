@@ -42,7 +42,7 @@ namespace WhiteLagoon.Web.Controllers
             Villa? villa = _db.Villas.FirstOrDefault(u=>u.Id==villaId);
             if (villa == null)
             {
-                return NotFound();
+                return RedirectToAction("Error", "Home");
             }
             return View(villa);
         }
