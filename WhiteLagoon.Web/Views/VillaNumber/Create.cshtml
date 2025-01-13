@@ -10,9 +10,9 @@
     <div class="card-body border p-4">
         <form method="post" class="row">
             <div class="p-3">
-                <div asp-validation-summary="ModelOnly"></div>
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-floating py-1 col-12">
-                    <select asp-for="VillaNumber.VillaId" asp-items="@Model.VillaList"
+                    <select asp-for="VillaNumber.VillaId" asp-items="Model.VillaList"
                         class="form-select border shadow">
                     <option disabled selected>-- Select Villa--</option>    
                     </select>
