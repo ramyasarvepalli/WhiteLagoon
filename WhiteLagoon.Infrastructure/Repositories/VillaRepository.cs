@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,14 +24,38 @@ namespace WhiteLagoon.Infrastructure.Repositories
             _db.Add(entity);
         }
 
-        public IEnumerable<Villa> Get(Expression<Func<Villa, bool>> filter, string? includeProperties = null)
+        public Villa Get(Expression<Func<Villa, bool>> filter, string? includeProperties = null)
         {
-            throw new NotImplementedException();
+            IQueryable<Villa> query = _db.Set<Villa>();
+            if (filter is not null)
+            {
+                query = query.Where(filter);
+            }
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var property in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
+            return query.FirstOrDefault();
         }
 
         public IEnumerable<Villa> GetAll(Expression<Func<Villa, bool>>? filter = null, string? includeProperties = null)
         {
-            throw new NotImplementedException();
+            IQueryable<Villa> query = _db.Set<Villa>();
+            if (filter is not null)
+            {
+                query = query.Where(filter);
+            }
+            if (includeProperties is not null)
+            {
+                foreach (var property in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
+            return query.ToList();
         }
 
         public void Remove(Villa entity)
