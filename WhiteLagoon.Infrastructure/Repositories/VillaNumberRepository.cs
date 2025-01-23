@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WhiteLagoon.Application.Common.Interfaces;
@@ -9,23 +10,17 @@ using WhiteLagoon.Infrastructure.Data;
 
 namespace WhiteLagoon.Infrastructure.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class VillaNumberRepository : Repository<VillaNumber>, IVillaNumberRepository
     {
         private readonly ApplicationDbContext _db;
-        public IVillaRepository Villa { get; private set; }
-
-        public IVillaNumberRepository VillaNumber { get; private set; }
-
-        public UnitOfWork(ApplicationDbContext db) 
+        public VillaNumberRepository(ApplicationDbContext db) : base(db) 
         {
             _db = db;
-            Villa = new VillaRepository(db);
-            VillaNumber = new VillaNumberRepository(db);
         }
 
-        public void Save()
+        public void Update(VillaNumber entity)
         {
-            _db.SaveChanges();
+            _db.Update(entity); 
         }
     }
 }
