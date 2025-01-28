@@ -10,3 +10,7 @@
 > Create a new ViewModel for the model (ex: AmenityViewModel)
 > Create Index, Create, Edit, Delete views for the model
 
+
+> geticons.bootstrap - Bootstrap icons
+> getbootstrap.com - Bootstrap (dropdown navbar)
+> fontawesome.com - Font Awesome
