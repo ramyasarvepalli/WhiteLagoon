@@ -14,3 +14,8 @@
 > geticons.bootstrap - Bootstrap icons
 > getbootstrap.com - Bootstrap (dropdown navbar)
 > fontawesome.com - Font Awesome
+
+> To include dependencies such as foreign keys, you can use the includeProperties.
+VillaList = _unitOfWork.Villa.GetAll(includeProperties: "VillaAmenity")
+[ValidateNever]
+public IEnumerable<Amenity> VillaAmenity { get; set; }
