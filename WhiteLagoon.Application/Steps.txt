@@ -19,3 +19,13 @@
 VillaList = _unitOfWork.Villa.GetAll(includeProperties: "VillaAmenity")
 [ValidateNever]
 public IEnumerable<Amenity> VillaAmenity { get; set; }
+
+
+> .NET Identity
+> Open ApplicationDbContext and inherit from IdentityDbContext by installing Microsoft.AspNetCore.Identity.EntityFrameworkCore
+> Add the following service in Program.cs
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+> AddEntityFrameworkStores<ApplicationDbContext>() is used to add Identity related tables to database using EFCore.
+> Add this line to OnModelCreating() override method in ApplicationDbContext class.
+base.OnModelCreating(modelBuilder);
+This line is used to add Identity related keys to Identity tables using EFCore.
