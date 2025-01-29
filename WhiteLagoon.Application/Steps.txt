@@ -29,3 +29,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 > Add this line to OnModelCreating() override method in ApplicationDbContext class.
 base.OnModelCreating(modelBuilder);
 This line is used to add Identity related keys to Identity tables using EFCore.
+> Create a new class ApplicationUser that inherits from IdentityUser to add custom properties to the IdentityUser class.
+> Specify the type of class to be added as ApplicationUser - public class ApplicationDbContext :IdentityDbContext<ApplicationUser>
+> Add DbSet<ApplicationUser> property to ApplicationDbContext class. This is used to add custom properties to the IdentityUser class without creating new ApplicationUser table
+as this is inherited from IdentityUser.
+> Replace IdentityUser with ApplicationUser in AddIdentity<IdentityUser, IdentityRole>() method in Program.cs
