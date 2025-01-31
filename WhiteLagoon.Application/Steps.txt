@@ -34,3 +34,9 @@ This line is used to add Identity related keys to Identity tables using EFCore.
 > Add DbSet<ApplicationUser> property to ApplicationDbContext class. This is used to add custom properties to the IdentityUser class without creating new ApplicationUser table
 as this is inherited from IdentityUser.
 > Replace IdentityUser with ApplicationUser in AddIdentity<IdentityUser, IdentityRole>() method in Program.cs
+
+> Inject IUnitOfWork in the controller constructor and use it to access the database, dbsets and repository methods.
+> Inject UserManager to manage the user. UserManager is used to create, update, delete and find users.
+> Inject SignInManager to sign in and sign out the user. That way we do not want to manage cookies and sessions manually. Directly we can use SignInManager 
+helper methods.
+> Inject RoleManager to manage roles. RoleManager is used to create, update, delete and find roles.
