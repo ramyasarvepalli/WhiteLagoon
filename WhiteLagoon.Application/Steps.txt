@@ -2,6 +2,14 @@
 > Add DbSet<T> property to DbContext
 > Seed data to the database by overriding OnModelCreating method
 > Add migration and update database
+
+Partial views:
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<partial name="_Notification"/>
+
+Repository pattern and UnitOfWork:
 > Create a repository interface (ex: IAmenityRepository) and inherit from IRepository<T> interface (ex: IRepository<Amenity>)
 > Create a repository class that implements the interface (ex: AmenityRepository)
 > Add the repository to the Unit of work class
@@ -22,7 +30,7 @@ public IEnumerable<Amenity> VillaAmenity { get; set; }
 
 
 > .NET Identity
-> Open ApplicationDbContext and inherit from IdentityDbContext by installing Microsoft.AspNetCore.Identity.EntityFrameworkCore
+> Open ApplicationDbContext and inherit from IdentityDbContext (instead of DbContext) by installing Microsoft.AspNetCore.Identity.EntityFrameworkCore
 > Add the following service in Program.cs
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 > AddEntityFrameworkStores<ApplicationDbContext>() is used to add Identity related tables to database using EFCore.

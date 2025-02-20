@@ -4,10 +4,12 @@ namespace WhiteLagoon.Web.Models.ViewModels
 {
     public class LoginVM
     {
-        public required string Email { get; set; }
+        [Required]
+        public string Email { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
-        public required string Password { get; set; }
+        public string Password { get; set; }
         public bool RememberMe { get; set; }
         public string? RedirectUrl { get; set; }
     }
