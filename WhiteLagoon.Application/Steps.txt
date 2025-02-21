@@ -48,3 +48,15 @@ as this is inherited from IdentityUser.
 > Inject SignInManager to sign in and sign out the user. That way we do not want to manage cookies and sessions manually. Directly we can use SignInManager 
 helper methods.
 > Inject RoleManager to manage roles. RoleManager is used to create, update, delete and find roles.
+
+> Add the following service in Program.cs to use Identity in the application. This service is used to add Identity related services to the application.
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+> Add roles to the database using RoleManager. If the role does not exist, create a new role. Without using DBContext or UnitOfWork, we can just use role manager helper methods
+to create the roles.
+if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
+            {
+                _roleManager.CreateAsync(new IdentityRole("Admin")).Wait();
+                _roleManager.CreateAsync(new IdentityRole("Customer")).Wait();
+            }
