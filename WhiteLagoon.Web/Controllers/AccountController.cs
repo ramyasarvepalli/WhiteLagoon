@@ -22,7 +22,7 @@ namespace WhiteLagoon.Web.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login(string? returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
             LoginVM loginVM = new()

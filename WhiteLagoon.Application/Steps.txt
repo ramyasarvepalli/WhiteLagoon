@@ -60,3 +60,16 @@ if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
                 _roleManager.CreateAsync(new IdentityRole("Admin")).Wait();
                 _roleManager.CreateAsync(new IdentityRole("Customer")).Wait();
             }
+
+> Helper methods that are commonly used are: (AccountController)
+SignInManager:
+_signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.RememberMe, lockoutOnFailure: false) // to login the user
+_signInManager.SignInAsync(user, isPersistent: false) // to sign in the user
+
+RoleManager:
+_roleManager.CreateAsync(new IdentityRole("Admin")).Wait() // to create a new role
+_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult() // to check if the role exists
+
+UserManager:
+_userManager.CreateAsync(user, registerVM.Password) // to create a new user
+_userManager.AddToRoleAsync(user, registerVM.Role)  // to add role to user
