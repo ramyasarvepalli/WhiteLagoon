@@ -26,6 +26,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.Configure<IdentityOptions>(options=>
 {
     options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
