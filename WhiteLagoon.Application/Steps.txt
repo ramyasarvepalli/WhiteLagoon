@@ -73,3 +73,16 @@ _roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult() // to check if th
 UserManager:
 _userManager.CreateAsync(user, registerVM.Password) // to create a new user
 _userManager.AddToRoleAsync(user, registerVM.Role)  // to add role to user
+
+>Check if the user is logged in:
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+    <span class="text-white">@UserManager.GetUserName(User)</span>
+}
+
+Authorization with roles:
+[Authorize(Roles = SD.Role_Admin)] on top of controller or action methods. This will allow only users with Admin role to access the controller or action methods.
+[Authorize] - works only if the user is logged in.
